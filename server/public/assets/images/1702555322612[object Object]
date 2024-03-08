@@ -1,0 +1,79 @@
+Question 1: What will be the Output of the below code:
+
+
+public class A {
+    public static void main(String[] args)
+    {
+        if (true)
+            break;
+    }
+}
+Choices:
+
+a) Nothing
+b) Error
+Answer: b) Error
+
+
+Question 3: What will be the Output of the below code:
+
+
+public class A {
+    public static void main(String[] args)
+    {
+        int $_ = 5;
+    }
+}
+Choices:
+
+a) Nothing
+b) Error
+
+
+
+
+Answer: a) Nothing
+
+public class Test
+{
+    public static void main(String[] args)
+    {
+        // How many objects are eligible for 
+        // garbage collection after this line?
+        m1();  // Line 5
+    }
+  
+    static void m1() 
+    {
+        Test t1 = new Test();
+        Test t2 = new Test();
+    } 
+}
+Question :
+How many objects are eligible for garbage collection after execution of line 5 ?
+Answer :2
+
+public class Test
+{
+    public static void main(String [] args) 
+    {
+        Test t1 = new Test();
+        Test t2 = m1(t1); // line 6
+        Test t3 = new Test();
+        t2 = t3; // line 8
+          
+    }
+      
+    static Test m1(Test temp) 
+    {
+        temp = new Test();
+        return temp;
+    }
+}
+Question :
+How many objects are eligible for garbage collection after execution of line 8?
+Answer :
+
+1
+
+When Is The Object Eligible For Garbage Collection?

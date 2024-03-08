@@ -1,0 +1,5 @@
+javascript is interpreted or compiled language?
+
+JavaScript is an interpreted language. When you write JavaScript code, it is executed by an interpreter, which reads and executes the code line by line at runtime. The JavaScript interpreter, commonly found in web browsers, parses and executes the code directly without the need for a separate compilation step.
+
+However, it's important to note that modern JavaScript engines employ various optimization techniques, including just-in-time (JIT) compilation, to improve performance. JIT compilation dynamically translates JavaScript code into a more efficient form, such as machine code, while the program is running. This compilation process happens behind the scenes and helps to speed up the execution of JavaScript programs.
