@@ -1,4 +1,3 @@
-import { request } from "express";
 import messagesModal from "../model/messageModal.js";
 
 export const addMessageController =async(request,response)=>{

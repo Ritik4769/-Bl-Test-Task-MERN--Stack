@@ -3,7 +3,7 @@ import axios from 'axios';
 import { createChat } from "../store/chatSlice.js";
 import { candidate_requestedUrl } from "../urls.js";
 import jscookie from 'js-cookie';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 function UserList() {
   const candidate_email = jscookie.get("candidate_email");
   const [data, setData] = useState([])
@@ -15,17 +15,17 @@ function UserList() {
       message: "Hi"
     }
     var chat_ID = await createChat(payLoad);
-    console.log("chat id from sllice : ", chat_ID)
+    // console.log("chat id from sllice : ", chat_ID)
     navigate('/userchat', { state: { email, chat_ID } })
   }
   useEffect(() => {
     async function showUser() {
       try {
-        // var data = await axios.get(requested_url + '/showUser');
+      
         var res = await axios.get(candidate_requestedUrl + `/UserList`);
-        console.log(res, "res----");
+        // console.log(res, "res----");
         setData(res.data.data);
-        // setData(data.data);
+      
       } catch (error) {
         console.log("Error in show user list ", error);
       }

@@ -2,9 +2,13 @@ import { addCandidate } from "../store/candidateSlice.js";
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
+
 
 var username = false, phone = false, checkemail = false, pass = false
 function CandidateRegistration() {
+  const dispatch = useDispatch();
+
   const [candidate, setCandidate] = useState({});
   const navigate = useNavigate();
   const getData = (event) => {
@@ -28,7 +32,7 @@ function CandidateRegistration() {
           document.getElementById("name").style.color = "red";
           document.getElementById("usertext").style.color = "red";
           document.getElementById("usertext").innerHTML = "Name Required";
-          // username = false;
+          username = false;
           return false
         } else if (reg.test(value)) {
           document.getElementById('name').style.color = "green";
@@ -141,8 +145,8 @@ function CandidateRegistration() {
 
     if (username && pass && checkemail && phone) {
 
-      const data = addCandidate(candidate);
-      console.log("datatatatat-=-=- ",data)
+      const data = dispatch(addCandidate({candidate}));
+      console.log("============ ",data)
       if(data){
 
         Swal.fire({

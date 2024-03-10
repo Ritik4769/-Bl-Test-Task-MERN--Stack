@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import indexRouter from './routes/indexRouter.js';
 import candidateRouter from './routes/candidateRouter.js';
 import chatRouter from './routes/chatRouter.js';
 import messageRouter from './routes/messageRouter.js';
@@ -13,7 +12,6 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/",indexRouter);
 app.use("/candidate",candidateRouter);
 app.use("/chat",chatRouter);
 app.use("/message",messageRouter);

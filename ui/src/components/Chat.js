@@ -3,24 +3,27 @@ import jscookie from 'js-cookie';
 import { useLocation } from "react-router-dom";
 import { findMessages } from "../store/messageSlice.js";
 import { io } from "socket.io-client";
+import { useDispatch } from 'react-redux';
+
 import { sendMessage } from "../store/messageSlice.js";
-import my_img from '../wp_img.jpg'
 function Chat() {
-    // const email = location.state;
     const location = useLocation();
+    const dispatch = useDispatch();
+
     const [newmessage, setMessage] = useState("");
     var [allMessages, SetAllMessages] = useState([]);
     const [OnlineUsers, setOnlineUsers] = useState([]);
 
     var [reciverId, setReciverId] = useState(location.state.email)
-    console.log(location.state.email);
+    // console.log(location.state.email);
     var [chatId, setChatID] = useState(location.state.chat_ID)
     const socket = useRef()
     const userEmail = jscookie.get("candidate_email");
 
-    console.log("chatId : ", chatId);
+    // console.log("chatId : ", chatId);
 
     useEffect(() => {
+        
         findMessages(chatId).then((data) => {
             if (data) {
                 console.log(data);
@@ -33,15 +36,15 @@ function Chat() {
 
 
     useEffect(() => {
-        console.log("inside use effect");
+        // console.log("inside use effect");
         socket.current = io("http://localhost:8800/chat");
         socket.current.emit("new-user-add", userEmail);
         socket.current.on("get-users", (users) => {
             setOnlineUsers([...users]);
-            console.log("active users", users);
+            // console.log("active users", users);
         });
         socket.current.on("recive-message", (data) => {
-            console.log("recived messavge", data);
+            // console.log("recived messavge", data);
 
             SetAllMessages((allMessages) => [...allMessages, data]);
         });
@@ -56,7 +59,7 @@ function Chat() {
                 chatId: chatId,
                 senderId: userEmail
             };
-            sendMessage(message)
+            dispatch(sendMessage({message}))
 
             socket.current.emit("send-message", message);
             allMessages = [...allMessages, message]
@@ -71,8 +74,7 @@ function Chat() {
     function setMessageFunction(newmessage) {
         console.log(newmessage.target.value);
         setMessage(newmessage.target.value)
-        console.log(reciverId);
-        console.log(my_img);
+        // console.log(reciverId);
     }
 
     return (

@@ -1,13 +1,14 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch } from 'react-redux';
 import { candidateLogin } from '../store/candidateSlice.js';
 import { useState } from 'react';
-import Swal from 'sweetalert2';
 
 function CandidateLogin() {
   const { user, loginWithRedirect, isAuthenticated } = useAuth0();
-  console.log("user ==== ", user);
-  const location = useLocation();
+  // console.log("user ==== ", user);
+  const dispatch = useDispatch();
+
   const [candidateCredential, setCandidateCredential] = useState();
   const navigate = useNavigate();
 
@@ -18,46 +19,11 @@ function CandidateLogin() {
       [name]: value
     });
   }
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    var result = candidateLogin(candidateCredential);
-    console.log("result of candidate : ", result);
-    result.then((resultData) => {
-      console.log(resultData);
-      console.log("result of candidate email : ", resultData.data.candidateemail);
-      console.log("result of candidate status : ", resultData.status);
-      if (resultData.status == 201) {
-        Swal.fire({
-          icon: "success",
-          text:"login Successfully.... ",
-          showConfirmButton: true,
-          showCloseButton: true,
-          showCancelButton: true,
-          focusConfirm: false,
-          // timer: 2000.
-      });
-        navigate("/", {
-          state: {
-            email: resultData.data.candidateemail
-          }
-        });
-      } else if (resultData.status == 203) {
-        Swal.fire({
-          icon: "error",
-          text: "Error while Login check Email and Password ",
-          showConfirmButton: true,
-          showCloseButton: true,
-          showCancelButton: true,
-          focusConfirm: false,
-          // timer: 2000.
-      });
-        navigate("/candidateLogin", {
-          state: {
-            message: resultData.data.message
-          }
-        });
-      }
-    });
+    var result =  dispatch(candidateLogin({candidateCredential,navigate}));
+    console.log("result of candidate : ", result.payload.candidateCredential.email);
+   
   }
 
   return (<>

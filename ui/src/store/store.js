@@ -5,7 +5,6 @@ import chatSlice from './chatSlice.js';
 export default configureStore({
    
     reducer : {
-        
         candidateSlice : candidateSlice,
         messageSlice:messageSlice,
         chatSlice:chatSlice
