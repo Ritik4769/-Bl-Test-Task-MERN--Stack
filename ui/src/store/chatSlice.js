@@ -1,24 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 const initialState = {
-    chatData:{}
+    chatData: {}
 }
 
 const chatSlice = createSlice({
-    name:"chatSlice",
+    name: "chatSlice",
     initialState,
-    reducers:{}
+    reducers: {}
 });
 
 
-export const createChat = async(payload)=>{
-    try{
+export const createChat = async (payload) => {
+    try {
         // console.log("this is the payloads in create chat ",payload);
-
-        var result  = await axios.post(`http://localhost:3001/chat`,payload);
+        var result = await axios.post(`http://localhost:3001/chat`, payload);
         // console.log("Inside create chat chatSlice",result.data.chatID);
         return result.data.chatID;
-    }catch(error){
+    } catch (error) {
         console.log(error);
     }
 }

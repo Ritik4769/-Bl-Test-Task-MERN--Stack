@@ -42,14 +42,14 @@ function CandidateLogin() {
               {/* "/candidate/candidateLogin" */}
               {isAuthenticated ? (<>
                 <form onSubmit={handleSubmit} className="form-group" method="post">
-                  <input className="form-control" onChange={getData} type="email" placeholder="Enter Email" id="email" name="email" /> <br />
-                  <input className="form-control" onChange={getData} type="password" placeholder="Enter Password" id="password" name="password" /> <br />
+                  <input className="form-control" onChange={getData} type="email" required placeholder="Enter Email" id="email" name="email" /> <br />
+                  <input className="form-control" onChange={getData} type="password" required placeholder="Enter Password" id="password" name="password" /> <br />
                   <input className="btn btn-primary btn-block" type="submit" value="Login" />
                   <input className="btn btn-success btn-block" type="reset" onClick={e => loginWithRedirect()} value="Continue With Google" />
                   <br />
                 </form></>) : (<><form onSubmit={handleSubmit} className="form-group" method="post">
-                  <input className="form-control" onChange={getData} type="email" placeholder="Enter Email" id="email" name="email" /> <br />
-                  <input className="form-control" onChange={getData} type="password" placeholder="Enter Password" id="password" name="password" /> <br />
+                  <input className="form-control" onChange={getData} type="email" required placeholder="Enter Email" id="email" name="email" /> <br />
+                  <input className="form-control" onChange={getData} type="password" required placeholder="Enter Password" id="password" name="password" /> <br />
                   <input className="btn btn-primary btn-block" type="submit" value="Login" />
                   <input className="btn btn-success btn-block" onClick={e => loginWithRedirect()} value="Continue With Google" />
                   <br />

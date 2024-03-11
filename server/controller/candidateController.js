@@ -4,6 +4,7 @@ export const candidateRegistrationController = async (request, response) => {
   // console.log("#######################", request.body);
   try {
     const { name, email, password, contact } = request.body;
+    
     var obj = {
       name: name,
       email: email,

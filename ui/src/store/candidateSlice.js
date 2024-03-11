@@ -30,20 +30,20 @@ const candidateSlice = createSlice({
                     Swal.fire({
                         icon: "success",
                         text: "login Successfully.... ",
-                        showConfirmButton: true,
-                        showCloseButton: true,
-                        showCancelButton: true,
-                        focusConfirm: false,
-                        // timer: 2000.
+                        // showConfirmButton: true,
+                        // showCloseButton: true,
+                        // showCancelButton: true,
+                        // focusConfirm: false,
+                        timer: 2000
                     });
                     action.payload.navigate("/");
                 } else if (result.status == 203) {
                     Swal.fire({
                         icon: "error",
                         text: "Error while Login check Email and Password ",
-                        showConfirmButton: true,
-                        showCloseButton: true,
-                        showCancelButton: true,
+                        // showConfirmButton: true,
+                        // showCloseButton: true,
+                        // showCancelButton: true,
                         focusConfirm: false,
                         // timer: 2000.
                     });
